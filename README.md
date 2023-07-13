@@ -29,7 +29,9 @@ rpk topic produce FV < /tmp/data/FV.json
 
 Una vez cargado el fichero podeis consultar los datos en la siguiente URL:
 
-```http://localhost:8080/topics/FV?p=-1&s=50&o=-2#messages```
+```
+http://localhost:8080/topics/FV
+```
 
 ### 2. Spark
 
@@ -46,4 +48,6 @@ python3 /opt/spark-apps/GroupbyDate.py
 
 En la siguiente URL podeis consultar los trabajos realizados
 
-```http://localhost:9095```
+```
+http://localhost:9095
+```
