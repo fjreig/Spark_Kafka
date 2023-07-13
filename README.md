@@ -52,3 +52,4 @@ http://localhost:9095
 ```
 docker exec -it spark-master python3 /opt/spark-apps/Pipeline.py
 ```
+![alt text]('topics.png')
