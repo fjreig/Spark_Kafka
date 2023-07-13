@@ -12,9 +12,10 @@ docker compose up -d
 
 ### 1. Kafka
 
-Creamos un topic de Kafka llamado FV
+Creamos los siguientes topics de kafka:
 ```
 docker exec -it redpanda rpk topic create FV
+docker exec -it redpanda rpk topic create FV_limpio
 ```
 
 Accedemos por consola al contenedor Kafka:
