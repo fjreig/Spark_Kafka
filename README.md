@@ -35,15 +35,9 @@ http://localhost:8080/topics/FV
 
 ### 2. Spark
 
-
-Accedemos por consola al contenedor Spark Master:
-```
-docker exec -it spark-master /bin/bash 
-```
-
 Ejecutamos la query:
 ```
-python3 /opt/spark-apps/GroupbyDate.py
+docker exec -it spark-master python3 /opt/spark-apps/GroupbyDate.py
 ```
 
 En la siguiente URL podeis consultar los trabajos realizados
