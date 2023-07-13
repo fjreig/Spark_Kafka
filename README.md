@@ -30,4 +30,12 @@ rpk topic produce FV < /tmp/data/FV.json
 ### 2. Spark
 
 
-docker exec -it spark-master /opt/spark/bin/spark-submit --master spark://spark-master:7077 --driver-memory 4G --executor-memory 3G /opt/spark-apps/Query.py
+Accedemos por consola al contenedor Spark Master:
+```
+docker exec -it spark-master /bin/bash 
+```
+
+Ejecutamos la query:
+```
+python3 /opt/spark-apps/GroupbyDate.py
+```
