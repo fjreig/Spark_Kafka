@@ -39,3 +39,7 @@ Ejecutamos la query:
 ```
 python3 /opt/spark-apps/GroupbyDate.py
 ```
+
+En la siguiente URL podeis consultar los trabajos realizados
+
+```http://localhost:9095```
