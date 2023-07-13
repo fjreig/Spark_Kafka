@@ -8,6 +8,9 @@ from pyspark.sql import SparkSession
 from pyspark.sql import SQLContext
 from pyspark.sql.functions import *
 
+
+### 1. Creamos la estructura de datos del topic FV
+
 FVSchema = StructType([
             StructField("fecha",StringType(),False),
             StructField("conexiones_inv",FloatType(),False),
@@ -78,6 +81,9 @@ FVSchema = StructType([
             StructField("Fecha_s",IntegerType(),False)
             ])
 
+
+### 2. Creamos un sesion de Spark con todos los workes con 3 Gb de RAM
+
 spark = SparkSession \
     .builder \
     .master('spark://spark-master:7077') \
@@ -86,6 +92,9 @@ spark = SparkSession \
     .config("spark.jars.packages","org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.0") \
     .getOrCreate()
 
+
+### 3. Creamos un dataframe donde se guardaran todos los datos del topic FV de Kafka
+
 df = spark \
   .read \
   .format("kafka") \
@@ -93,13 +102,17 @@ df = spark \
   .option("subscribe", "FV") \
   .load()
 
+
+### 4. Seleccionamos solo la columna valores que esta en formato json, el resto de columnas nos da igual
+
 df1 = df.selectExpr("CAST(value AS STRING)").select(from_json(col("value"),FVSchema).alias("data")).select("data.*")
 
-#df1 = df1.withColumn('Timestamp', from_unixtime((col('Fecha_s'))))
+
+### 5. Creamos una vista del dataframe para poder realizar una Consulta SQL
 
 df1.createOrReplaceTempView("Photovoltaics")
 
-#df1.printSchema()
+### 6. Realizamos una query que agrupe los datos por fecha
 
 df1 = spark.sql("""SELECT date(fecha) as date,
             round(max(ea_aarr_iii)-min(ea_aarr_iii),1) as EA_red,
@@ -110,6 +123,6 @@ df1 = spark.sql("""SELECT date(fecha) as date,
             FROM Photovoltaics
             where ea_aarr_iii > 1000 and es_aarr_iii> 1000
             group by date(fecha)
-            order by date(fecha) desc """)
+            order by date(fecha) """)
 
 df1.show()
