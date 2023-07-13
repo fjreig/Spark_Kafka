@@ -46,3 +46,9 @@ En la siguiente URL podeis consultar los trabajos realizados
 ```
 http://localhost:9095
 ```
+
+### 3. Pipeline
+
+```
+docker exec -it spark-master python3 /opt/spark-apps/Pipeline.py
+```
