@@ -12,10 +12,9 @@ docker compose up -d
 
 ### 1. Kafka
 
-Creamos los siguientes topics de kafka:
+Creamos un topic de kafka llamado FV
 ```
 docker exec -it redpanda rpk topic create FV
-docker exec -it redpanda rpk topic create FV_limpio
 ```
 
 Accedemos por consola al contenedor Kafka:
@@ -48,6 +47,11 @@ http://localhost:9095
 ```
 
 ### 3. Pipeline
+
+Creamos un nuevo topic de Kafka:
+```
+docker exec -it redpanda rpk topic create FV_limpio
+```
 
 ```
 docker exec -it spark-master python3 /opt/spark-apps/Pipeline.py
