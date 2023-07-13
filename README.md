@@ -53,5 +53,6 @@ http://localhost:9095
 docker exec -it spark-master python3 /opt/spark-apps/Pipeline.py
 ```
 
-Si volvemos a entrar a la consola de Kafka, podremos ver como se ha creado un nuevo topic
+Si volvemos a entrar a la consola de Kafka, podremos ver como se ha creado un nuevo topic agrupado por fecha
+
 ![alt text](topics.png)
