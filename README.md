@@ -27,6 +27,10 @@ Y ejecutamos dentro del contenedor el siguiente comando para añadir al topic FV
 rpk topic produce FV < /tmp/data/FV.json
 ```
 
+Una vez cargado el fichero podeis consultar los datos en la siguiente URL:
+
+```http://localhost:8080/topics/FV?p=-1&s=50&o=-2#messages```
+
 ### 2. Spark
 
 
