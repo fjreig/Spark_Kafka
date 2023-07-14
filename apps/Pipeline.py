@@ -86,7 +86,7 @@ FVSchema = StructType([
 spark = SparkSession \
     .builder \
     .master('spark://spark-master:7077') \
-    .appName("Query by date") \
+    .appName("Pipeline") \
     .config("spark.executor.memory", "3g") \
     .config("spark.jars.packages","org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.0") \
     .getOrCreate()
