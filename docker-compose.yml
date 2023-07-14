@@ -74,7 +74,7 @@ services:
     container_name: spark-worker-a
     ports:
       - "9096:8080"
-      - "7000:7000"
+      - "7001:7000"
     depends_on:
       - spark-master
     environment:
@@ -96,7 +96,7 @@ services:
     container_name: spark-worker-b
     ports:
       - "9097:8080"
-      - "7001:7000"
+      - "7002:7000"
     depends_on:
       - spark-master
     environment:
