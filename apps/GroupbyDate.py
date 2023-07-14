@@ -112,7 +112,17 @@ df1 = df.selectExpr("CAST(value AS STRING)").select(from_json(col("value"),FVSch
 
 df1.createOrReplaceTempView("Photovoltaics")
 
-### 6. Realizamos una query que agrupe los datos por fecha
+### 5. Creamos una vista del dataframe para poder realizar una Consulta SQL
+
+df1.createOrReplaceTempView("Photovoltaics")
+
+### 6. Realizamos una query para que nos devuelva el numero de filas
+
+df1 = spark.sql("""SELECT count(*) FROM Photovoltaics""")
+
+df1.show()
+
+### 7. Realizamos una query que agrupe los datos por fecha
 
 df1 = spark.sql("""SELECT date(fecha) as date,
             round(max(ea_aarr_iii)-min(ea_aarr_iii),1) as EA_red,
@@ -121,7 +131,6 @@ df1 = spark.sql("""SELECT date(fecha) as date,
             round((max(ea_aarr_iii)-min(ea_aarr_iii))/(max(es_aarr_iii)-min(es_aarr_iii)),2) as FP_red,
             round(max(ea_aarr_iii)-min(ea_aarr_iii) + max(ea_diaria_inv),1) as EA_Consumo
             FROM Photovoltaics
-            where ea_aarr_iii > 1000 and es_aarr_iii> 1000
             group by date(fecha)
             order by date(fecha) """)
 
